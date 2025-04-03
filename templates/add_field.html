@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Additional Fields{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add Additional Fields</h1>
+    {% if students %}
+    <form action="{{ url_for('add_field') }}" method="post" class="field-form">
+        <div class="input-group">
+            <label for="field_name">Field Name:</label>
+            <input type="text" id="field_name" name="field_name" required 
+                   placeholder="e.g., Hobby, Skill, Phone">
+            
+            <label for="field_value">Field Value:</label>
+            <input type="text" id="field_value" name="field_value" required 
+                   placeholder="Enter the value">
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="primary-button">Add Field</button>
+            <a href="{{ url_for('view_students') }}" class="button">Skip</a>
+        </div>
+    </form>
+    {% else %}
+    <div class="alert alert-warning">
+        Please add a student first before adding additional fields.
+        <a href="{{ url_for('index') }}" class="button">Add Student</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
